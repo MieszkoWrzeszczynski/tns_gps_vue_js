@@ -1,8 +1,22 @@
 const Vue = require("nativescript-vue");
 const geoLocation = require("nativescript-geolocation");
 
+
+const SomeService = require("./SomeService");
+const utils = require("utils/utils");
+
+
+
+
+
 module.exports = {
   methods: {
+    onPageLoaded: function () {
+      var context = utils.ad.getApplicationContext();
+      var intent = new android.content.Intent(context, com.something.SomeService.class);
+  
+      context.startService(intent);
+  },
     enableLocationServices: function () {
       geoLocation.isEnabled().then(enabled => {
         if (!enabled) {
@@ -53,6 +67,11 @@ module.exports = {
         <StackLayout class="home-panel">
           <StackLayout>
           <Button text="Show location" @tap="enableLocationServices" />
+          <Button text="onPageLoaded" @tap="onPageLoaded" />
+
+
+
+          
             <StackLayout :visibility="currentGeoLocation.latitude ? 'visible' : 'collapsed'">
               <Label :text="'Latitude: ' + currentGeoLocation.latitude" />
               <Label :text="'Longitude: ' + currentGeoLocation.longitude" />

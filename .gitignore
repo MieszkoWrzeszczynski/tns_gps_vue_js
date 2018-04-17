@@ -1,6 +1,6 @@
 npm-debug.log
 .DS_Store
-
+**/package-lock.json
 *.js.map
 *.metadata.json
 npm-debug.log
