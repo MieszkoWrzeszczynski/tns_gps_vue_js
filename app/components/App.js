@@ -2,9 +2,9 @@ const Vue = require("nativescript-vue");
 const geoLocation = require("nativescript-geolocation");
 
 
-const SomeService = require("./SomeService");
+const BackGroudService = require("../services/BackGroudService");
 const utils = require("utils/utils");
-
+const GeoLocationService = require('../services/GeoLocationService');
 
 
 
@@ -13,7 +13,7 @@ module.exports = {
   methods: {
     onPageLoaded: function () {
       var context = utils.ad.getApplicationContext();
-      var intent = new android.content.Intent(context, com.something.SomeService.class);
+      var intent = new android.content.Intent(context, com.something.BackGroudService.class);
   
       context.startService(intent);
   },
@@ -26,20 +26,16 @@ module.exports = {
         }
       });
     },
+    showLocation: GeoLocationService.showLocation,
+    
+    
+    /*
     showLocation: function () {
       geoLocation.watchLocation(location => {
           this.currentGeoLocation = location;
           console.log(location.latitude,location.longitude);
-          console.log(location.latitude,location.longitude);
-          fetch('http://192.168.1.111:3000/locations', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  location
-              })
-          })
+          console.log('POST here');
+
       }, error => {
         alert(error);
       }, {
@@ -47,7 +43,7 @@ module.exports = {
           updateDistance: 0,
           minimumUpdateTime: 100 * 1
         });
-    },
+    },*/
   },
   data() {
     return {

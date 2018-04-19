@@ -26,7 +26,7 @@
 		android:theme="@style/AppTheme">
 
 
-<service android:name="com.something.SomeService"
+<service android:name="com.something.BackGroudService"
         android:exported="false" >
 </service>
 
